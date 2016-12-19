@@ -1,0 +1,82 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wipm.exchangestats.data.ingress.gateway", "wipm.exchangestats.data.ingress.gateway\wipm.exchangestats.data.ingress.gateway.csproj", "{16338E4C-30CA-4006-A581-67FFC118BB16}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wipm.exchangestats.data.ingress.interfaces", "wipm.exchangestats.data.ingress.interfaces\wipm.exchangestats.data.ingress.interfaces.csproj", "{90EB0CA0-8C64-42AF-9282-AFB8DA02711D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wipm.exchangestats.data.ingress.interfaces.tests", "wipm.exchangestats.data.ingress.interfaces.tests\wipm.exchangestats.data.ingress.interfaces.tests.csproj", "{9B47E2C7-1C0B-408E-B81A-4000D0081AAD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wipm.exchangestats.data.ingress.gateway.tests", "wipm.exchangestats.data.ingress.gateway.tests\wipm.exchangestats.data.ingress.gateway.tests.csproj", "{4567B011-2D20-4026-8472-C01BB2E64FD9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wipm.exchangestats.data.ingress.core", "wipm.exchangestats.data.ingress.core\wipm.exchangestats.data.ingress.core.csproj", "{A17D5787-20C7-4974-86E5-2A66FD9940C8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wipm.exchangestats.data.ingress.listener", "wipm.exchangestats.data.ingress.listener\wipm.exchangestats.data.ingress.listener.csproj", "{920C1FA3-D173-4EE5-AD2F-6F375710543F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wipm.library.messaging", "wipm.library.messaging\wipm.library.messaging.csproj", "{288FD9DD-14D5-4289-867C-F8BB0C1E4097}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "data ingress", "data ingress", "{0621690B-AC22-4AC2-B2FA-8F9CDA90D164}"
+	ProjectSection(SolutionItems) = preProject
+		DataIngress.md = DataIngress.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "exe", "exe", "{F9BAD288-AAA2-4294-99D1-0FDC75618F1E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "lib", "lib", "{81B4791B-7D6E-4941-B0A9-92672C7473B0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{00CF2473-00E1-43A7-A566-275506417B69}"
+	ProjectSection(SolutionItems) = preProject
+		Readme.md = Readme.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{16338E4C-30CA-4006-A581-67FFC118BB16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16338E4C-30CA-4006-A581-67FFC118BB16}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16338E4C-30CA-4006-A581-67FFC118BB16}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16338E4C-30CA-4006-A581-67FFC118BB16}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90EB0CA0-8C64-42AF-9282-AFB8DA02711D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90EB0CA0-8C64-42AF-9282-AFB8DA02711D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90EB0CA0-8C64-42AF-9282-AFB8DA02711D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90EB0CA0-8C64-42AF-9282-AFB8DA02711D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B47E2C7-1C0B-408E-B81A-4000D0081AAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B47E2C7-1C0B-408E-B81A-4000D0081AAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B47E2C7-1C0B-408E-B81A-4000D0081AAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B47E2C7-1C0B-408E-B81A-4000D0081AAD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4567B011-2D20-4026-8472-C01BB2E64FD9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4567B011-2D20-4026-8472-C01BB2E64FD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4567B011-2D20-4026-8472-C01BB2E64FD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4567B011-2D20-4026-8472-C01BB2E64FD9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A17D5787-20C7-4974-86E5-2A66FD9940C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A17D5787-20C7-4974-86E5-2A66FD9940C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A17D5787-20C7-4974-86E5-2A66FD9940C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A17D5787-20C7-4974-86E5-2A66FD9940C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{920C1FA3-D173-4EE5-AD2F-6F375710543F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{920C1FA3-D173-4EE5-AD2F-6F375710543F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{920C1FA3-D173-4EE5-AD2F-6F375710543F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{920C1FA3-D173-4EE5-AD2F-6F375710543F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{288FD9DD-14D5-4289-867C-F8BB0C1E4097}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{288FD9DD-14D5-4289-867C-F8BB0C1E4097}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{288FD9DD-14D5-4289-867C-F8BB0C1E4097}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{288FD9DD-14D5-4289-867C-F8BB0C1E4097}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{16338E4C-30CA-4006-A581-67FFC118BB16} = {F9BAD288-AAA2-4294-99D1-0FDC75618F1E}
+		{90EB0CA0-8C64-42AF-9282-AFB8DA02711D} = {81B4791B-7D6E-4941-B0A9-92672C7473B0}
+		{9B47E2C7-1C0B-408E-B81A-4000D0081AAD} = {81B4791B-7D6E-4941-B0A9-92672C7473B0}
+		{4567B011-2D20-4026-8472-C01BB2E64FD9} = {81B4791B-7D6E-4941-B0A9-92672C7473B0}
+		{A17D5787-20C7-4974-86E5-2A66FD9940C8} = {81B4791B-7D6E-4941-B0A9-92672C7473B0}
+		{920C1FA3-D173-4EE5-AD2F-6F375710543F} = {F9BAD288-AAA2-4294-99D1-0FDC75618F1E}
+		{F9BAD288-AAA2-4294-99D1-0FDC75618F1E} = {0621690B-AC22-4AC2-B2FA-8F9CDA90D164}
+		{81B4791B-7D6E-4941-B0A9-92672C7473B0} = {0621690B-AC22-4AC2-B2FA-8F9CDA90D164}
+	EndGlobalSection
+EndGlobal
