@@ -42,7 +42,6 @@ namespace wipm.exchangestats.data.ingress.listener {
                             messageSourceTopic: ingressTopic
                            ,messageSourceSubscription : ingressTopicSubscription
                            ,outcomeSink : new AzureServiceBusIngressDataTopic()
-                           ,dataModelFactory : new DataModelDbContextFactory()
                         );
                     });
                     serviceConfiguration.WhenStarted( tc => tc.Start() );

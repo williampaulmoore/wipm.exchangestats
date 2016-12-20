@@ -72,7 +72,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\DataModelDbContext.cs" />
-    <Compile Include="Data\DataModelDbContextFactory.cs" />
     <Compile Include="Data\DataModelDbContextInitializer.cs" />
     <Compile Include="Data\ExchangeModelSetAdapter.cs" />
     <Compile Include="Data\MessageModel.cs" />
@@ -81,7 +80,6 @@
     <Compile Include="Domain\MessageContext.cs" />
     <Compile Include="Domain\MessageOutcome.cs" />
     <Compile Include="Domain\OutcomeContext.cs" />
-    <Compile Include="Domain\ServiceDataModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Domain\Service.cs" />

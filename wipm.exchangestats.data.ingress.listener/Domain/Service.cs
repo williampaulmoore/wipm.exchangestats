@@ -35,20 +35,17 @@ namespace wipm.exchangestats.data.ingress.listener {
         public Service
                 ( TopicDescription messageSourceTopic
                 , SubscriptionClient messageSourceSubscription
-                , IIngressQueue outcomeSink
-                , ServiceDataModelFactory dataModelFactory ) {
+                , IIngressQueue outcomeSink ) {
 
 
             if ( messageSourceTopic == null ) throw new ArgumentNullException( nameof( messageSourceTopic ) );
             if ( messageSourceSubscription == null ) throw new ArgumentNullException( nameof ( messageSourceSubscription ) );
             if ( outcomeSink == null ) throw new ArgumentNullException( nameof( outcomeSink ) );
-            if ( dataModelFactory == null ) throw new ArgumentNullException( nameof( dataModelFactory ) );
 
 
             this.messageSourceTopic = messageSourceTopic;
             this.messageSourceSubscription = messageSourceSubscription;
             this.outcomeSink = outcomeSink;
-            this.dataModelFactory = dataModelFactory;
             this.serviceCommandFatory = createServiceCommandFactory();
 
 
@@ -77,7 +74,7 @@ namespace wipm.exchangestats.data.ingress.listener {
             Trace.TraceInformation( $"[{message.MessageId}] Received message" );
 
             var world 
-                  = dataModelFactory.CreateServiceDataModel();
+                  = new DataModelDbContext();
 
             try {
                 var messageContext
@@ -113,11 +110,9 @@ namespace wipm.exchangestats.data.ingress.listener {
             Trace.TraceInformation( $"Publishing unpublished messages" );
 
             var dataModel 
-                  = dataModelFactory.CreateServiceDataModel();
+                  = new DataModelDbContext();
 
             try { 
-
-            // using ( var dataModel = dataModelFactory.CreateServiceDataModel() ) {
 
                 var serviceContext 
                       = createServiceContext( dataModel, outcomeSink );
@@ -135,7 +130,7 @@ namespace wipm.exchangestats.data.ingress.listener {
                 }
 
             } catch ( Exception e ) {
-                Trace.TraceError( $"Message: {e.Message}, Stack trace: {e.StackTrace}"  );
+                Trace.TraceError( $"Message: {e.Message}, Stack trace: {e.StackTrace}" );
                 throw;
 
             } finally {
@@ -146,7 +141,7 @@ namespace wipm.exchangestats.data.ingress.listener {
 
         private static MessageContext createMessageContext
                                        ( BrokeredMessage brokeredMessage
-                                       , ServiceDataModel serviceDataModel 
+                                       , DataModelDbContext serviceDataModel 
                                        , IIngressQueue dataIngressTopic ) {
 
             if ( brokeredMessage == null ) throw new ArgumentNullException( nameof( brokeredMessage ) );
@@ -166,7 +161,7 @@ namespace wipm.exchangestats.data.ingress.listener {
         }
 
         private static ServiceContext createServiceContext
-                                       ( ServiceDataModel serviceDataModel
+                                       ( DataModelDbContext serviceDataModel
                                        , IIngressQueue dataIngressTopic ) {
 
             return new ServiceContext(
@@ -350,7 +345,6 @@ namespace wipm.exchangestats.data.ingress.listener {
 
         private readonly SubscriptionClient messageSourceSubscription;
         private readonly IIngressQueue outcomeSink;
-        private readonly ServiceDataModelFactory dataModelFactory;
         private readonly ServiceCommandFactory serviceCommandFatory;
         private readonly TopicDescription messageSourceTopic;
     }

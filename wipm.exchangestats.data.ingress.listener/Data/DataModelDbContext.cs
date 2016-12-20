@@ -14,7 +14,7 @@ namespace wipm.exchangestats.data.ingress.listener {
     /// </summary>
     class DataModelDbContext
             : DbContext
-            , ServiceDataModel {
+            , CoreDataModel {
 
         public ExchangeModelSet ExchangeModels {
             get {

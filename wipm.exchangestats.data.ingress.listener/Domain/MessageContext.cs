@@ -25,12 +25,12 @@ namespace wipm.exchangestats.data.ingress.listener {
 
     class ServiceContext {
 
-        public readonly ServiceDataModel ServiceDataModel;
+        public readonly DataModelDbContext ServiceDataModel;
         public readonly ServiceCommandFactory ServiceCommandFactory;
         public readonly IIngressQueue DataIngressTopic;
 
         public ServiceContext
-                ( ServiceDataModel serviceDataModel
+                ( DataModelDbContext serviceDataModel
                 , ServiceCommandFactory serviceCommandFactory
                 , IIngressQueue dataIngressTopic ){
 
