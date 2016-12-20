@@ -7,10 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wipm.exchangestats.data.ing
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wipm.exchangestats.data.ingress.interfaces", "wipm.exchangestats.data.ingress.interfaces\wipm.exchangestats.data.ingress.interfaces.csproj", "{90EB0CA0-8C64-42AF-9282-AFB8DA02711D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wipm.exchangestats.data.ingress.interfaces.tests", "wipm.exchangestats.data.ingress.interfaces.tests\wipm.exchangestats.data.ingress.interfaces.tests.csproj", "{9B47E2C7-1C0B-408E-B81A-4000D0081AAD}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wipm.exchangestats.data.ingress.gateway.tests", "wipm.exchangestats.data.ingress.gateway.tests\wipm.exchangestats.data.ingress.gateway.tests.csproj", "{4567B011-2D20-4026-8472-C01BB2E64FD9}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wipm.exchangestats.data.ingress.core", "wipm.exchangestats.data.ingress.core\wipm.exchangestats.data.ingress.core.csproj", "{A17D5787-20C7-4974-86E5-2A66FD9940C8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wipm.exchangestats.data.ingress.listener", "wipm.exchangestats.data.ingress.listener\wipm.exchangestats.data.ingress.listener.csproj", "{920C1FA3-D173-4EE5-AD2F-6F375710543F}"
@@ -45,14 +41,6 @@ Global
 		{90EB0CA0-8C64-42AF-9282-AFB8DA02711D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{90EB0CA0-8C64-42AF-9282-AFB8DA02711D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{90EB0CA0-8C64-42AF-9282-AFB8DA02711D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9B47E2C7-1C0B-408E-B81A-4000D0081AAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9B47E2C7-1C0B-408E-B81A-4000D0081AAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9B47E2C7-1C0B-408E-B81A-4000D0081AAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9B47E2C7-1C0B-408E-B81A-4000D0081AAD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4567B011-2D20-4026-8472-C01BB2E64FD9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4567B011-2D20-4026-8472-C01BB2E64FD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4567B011-2D20-4026-8472-C01BB2E64FD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4567B011-2D20-4026-8472-C01BB2E64FD9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A17D5787-20C7-4974-86E5-2A66FD9940C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A17D5787-20C7-4974-86E5-2A66FD9940C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A17D5787-20C7-4974-86E5-2A66FD9940C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -72,8 +60,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{16338E4C-30CA-4006-A581-67FFC118BB16} = {F9BAD288-AAA2-4294-99D1-0FDC75618F1E}
 		{90EB0CA0-8C64-42AF-9282-AFB8DA02711D} = {81B4791B-7D6E-4941-B0A9-92672C7473B0}
-		{9B47E2C7-1C0B-408E-B81A-4000D0081AAD} = {81B4791B-7D6E-4941-B0A9-92672C7473B0}
-		{4567B011-2D20-4026-8472-C01BB2E64FD9} = {81B4791B-7D6E-4941-B0A9-92672C7473B0}
 		{A17D5787-20C7-4974-86E5-2A66FD9940C8} = {81B4791B-7D6E-4941-B0A9-92672C7473B0}
 		{920C1FA3-D173-4EE5-AD2F-6F375710543F} = {F9BAD288-AAA2-4294-99D1-0FDC75618F1E}
 		{F9BAD288-AAA2-4294-99D1-0FDC75618F1E} = {0621690B-AC22-4AC2-B2FA-8F9CDA90D164}

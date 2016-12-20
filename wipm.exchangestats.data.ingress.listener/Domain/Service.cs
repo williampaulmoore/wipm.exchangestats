@@ -340,7 +340,7 @@ namespace wipm.exchangestats.data.ingress.listener {
 
 
             // post the outcome to the message queue
-            var outcomeMessage = new IngressQueueEntry<string>(
+            var outcomeMessage = new IngressQueueEntry(
                 RequestId: outcomeContext.MessageOutcome.RequestId
                ,Message:  outcomeContext.MessageOutcome.Outcome 
                ,MessageType: outcomeContext.MessageOutcome.OutcomeType

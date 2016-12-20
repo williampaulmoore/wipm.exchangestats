@@ -10,15 +10,13 @@ namespace wipm.exchangestats.data.ingress.gateway {
     public class AzureServiceBusIngressGatewayTopic
                   : IIngressGatewayQueue {
 
-        public void Dispatch<P>
-                     ( IngressQueueEntry<P> queueEntry ) {
+        public void Dispatch
+                     ( IngressQueueEntry queueEntry ) {
 
             if ( queueEntry == null ) throw new ArgumentNullException( nameof( queueEntry ) );
 
 
-            var json = JsonConvert.SerializeObject( queueEntry.Message );
-
-            var message = new BrokeredMessage( json );
+            var message = new BrokeredMessage( queueEntry.Message );
                 message.MessageId = queueEntry.RequestId.ToString();
                 message.ContentType = queueEntry.MessageType;
 

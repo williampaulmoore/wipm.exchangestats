@@ -5,26 +5,26 @@ namespace wipm.library.messaging {
     // Queue that data ingress requests are posted to. 
     public interface IIngressQueue {
 
-        void Dispatch<P>
-               ( IngressQueueEntry<P> envelope );
+        void Dispatch
+               ( IngressQueueEntry envelope );
 
     }
 
     // Represents an entry on the queue
-    public class IngressQueueEntry<P> {
+    public class IngressQueueEntry {
 
         // Unique id for this request
         public Guid RequestId { get; private set; }
 
         // Domain specific message
-        public P Message { get; private set; }
+        public string Message { get; private set; }
 
         // Get the type that was intended rather
         public string MessageType { get; private set; }
 
         public IngressQueueEntry
                 ( Guid RequestId
-                , P Message
+                , string Message
                 , string MessageType ) {
 
             if ( RequestId == Guid.Empty ) throw new ArgumentException( nameof( RequestId ) );

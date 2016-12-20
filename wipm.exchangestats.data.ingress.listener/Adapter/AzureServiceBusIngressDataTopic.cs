@@ -11,12 +11,11 @@ namespace wipm.exchangestats.data.ingress.listener {
            : IIngressQueue {
 
 
-        public void Dispatch<P>
-                     ( IngressQueueEntry<P> envelope ) {
+        public void Dispatch
+                     ( IngressQueueEntry envelope ) {
 
-            var json = JsonConvert.SerializeObject( envelope.Message );
-
-            var message = new BrokeredMessage( json );
+            
+            var message = new BrokeredMessage( envelope.Message );
                 message.MessageId = envelope.RequestId.ToString();
                 message.ContentType = envelope.MessageType;
 

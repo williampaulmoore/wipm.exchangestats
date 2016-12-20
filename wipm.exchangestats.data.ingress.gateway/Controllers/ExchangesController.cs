@@ -22,9 +22,12 @@ namespace wipm.exchangestats.data.ingress.gateway.Controllers {
             if ( exchanges.Count() == 0 ) return new HttpResponseMessage( HttpStatusCode.BadRequest );
 
 
-            var queueEntry = new IngressQueueEntry<IEnumerable<ExchangeData>>(
+            var json
+                  = ExchangeDataJsonConverter.SerialiseEnumerable( exchanges );
+
+            var queueEntry = new IngressQueueEntry(
                 RequestId: requestIdentityProvider.GetId()
-               ,Message: exchanges
+               ,Message: json
                ,MessageType: Messages.Exchanges
             );
 

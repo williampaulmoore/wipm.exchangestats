@@ -61,8 +61,8 @@ namespace wipm.exchangestats.data.ingress.core {
             try {
 
                 var exchanges 
-                      = JsonConvert
-                          .DeserializeObject<IEnumerable<ExchangeData>>( message );
+                      = ExchangeDataJsonConverter
+                          .DeserialiseEnumerable( message );
 
                 return 
                   exchanges
