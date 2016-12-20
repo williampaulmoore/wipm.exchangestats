@@ -67,7 +67,7 @@ namespace wipm.exchangestats.data.ingress.core {
 
 
         public DomainModel
-                 ( DataModel dataModel ) {
+                 ( CoreDataModel dataModel ) {
 
             if ( dataModel == null ) throw new ArgumentNullException( nameof( dataModel ) );
 
@@ -76,7 +76,7 @@ namespace wipm.exchangestats.data.ingress.core {
 
         }
 
-        private DataModel dataModel;
+        private CoreDataModel dataModel;
     }
    
 }

@@ -5,7 +5,7 @@ using wipm.exchangestats.data.ingress.core;
 namespace wipm.exchangestats.data.ingress.listener {
 
     public interface ServiceDataModel
-                      : DataModel
+                      : CoreDataModel
                       , IDisposable {
 
         IEnumerable<MessageOutcome> GetUnpublishedOutcomes();
