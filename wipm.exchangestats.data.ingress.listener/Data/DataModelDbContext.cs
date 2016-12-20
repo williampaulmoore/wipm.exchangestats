@@ -1,6 +1,4 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
-using System;
+﻿using System;
 using System.Data.Entity;
 using System.Linq;
 using wipm.exchangestats.data.ingress.core;
@@ -23,9 +21,6 @@ namespace wipm.exchangestats.data.ingress.listener {
         }
         private ExchangeModelSet exchagenModels;
             
-        public void Commit() {
-            this.SaveChanges();
-        }
 
         public void WriteMessage( Message message ) {
 

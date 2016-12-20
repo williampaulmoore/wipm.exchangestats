@@ -2,6 +2,7 @@
 using Microsoft.ServiceBus.Messaging;
 using Newtonsoft.Json;
 using System;
+using System.Data;
 using System.Diagnostics;
 using wipm.exchangestats.data.ingress.core;
 using wipm.exchangestats.data.ingress.interfaces;
@@ -79,18 +80,41 @@ namespace wipm.exchangestats.data.ingress.listener {
             try {
                 var messageContext
                       = createMessageContext( message, world, outcomeSink );
+                
+                // There may be stale messages in the queue if we had a dirty shutdown
+                // as such we check each message first to see if it has been processed.
+                // 
+                // The way the service is written if we have processed a message there
+                // will always be a message entry with the same id.
 
                 if ( !messageContext
                         .ServiceContext
                         .ServiceDataModel
-                        .HasMessage( messageContext.Message.RequestId ) ) { 
+                        .HasMessage( messageContext.Message.RequestId ) ) {
 
                     Trace.TraceInformation( $"[{message.MessageId}] Processing message" );
 
+
+                    // Process message performs any state changes and then 
+                    // writes the state changes, the message, and message 
+                    // outcome in one transaction.
+                    //
+                    // Publish outcome post the message outcome to the 
+                    // dataIngress topic and then set the message to published.
+                    //
+                    // This along with publishing unpublished messages when 
+                    // starting the service and the above check to see if 
+                    // the message has previously been published should 
+                    // ensure consistency so long as the message bus technology
+                    // can detect duplicate messages which Service bus can.  
+                    // It is needed becasue we have two separate components 
+                    // ( the database and the Azure Service bus ) and you can 
+                    // never tell when the service may fail.
                     messageContext
-                        .fmap( processMessage )
-                        .fmap( publishOutcome )
-                        ;
+                      .fmap( processMessage )
+                      .fmap( publishOutcome )
+                      ;
+
                 }
                 message.Complete();
 
@@ -189,26 +213,56 @@ namespace wipm.exchangestats.data.ingress.listener {
             if ( messageContext == null ) throw new ArgumentNullException( nameof( messageContext ) );
 
 
-            return
-              messageContext                       
-                .fmap( recordMessageInMessageStore )
-                .fmap( processMessageInCore )
-                .fmap( recordMessageOutcome )
-                .fmap( commitMessage )
-                ;
+            var transaction 
+                 = messageContext
+                    .ServiceContext
+                    .ServiceDataModel
+                    .Database
+                    .BeginTransaction( IsolationLevel.Serializable );
 
+            try {
+
+                var outcome
+                     = messageContext                       
+                         .fmap( recordMessageInMessageStore )
+                         .fmap( processMessageInCore )
+                         .fmap( recordMessageOutcome )
+                         ;
+
+                messageContext
+                  .ServiceContext
+                  .ServiceDataModel
+                  .SaveChanges();
+
+                transaction.Commit();
+
+                return outcome;
+
+            } finally {
+                transaction.Dispose(); // will roll back the transaction if needed
+            }
         }
 
         private static void publishOutcome
                              ( OutcomeContext outcomeContext ) {
 
             if ( outcomeContext == null ) throw new ArgumentNullException( nameof( outcomeContext ) );
-            
+
+
+            // This does not need to be wrapped in transaction because it does
+            // not perform any validation that requires querying the database
+            // so we are not having to artificially pretend that the world is
+            // a stabl place.
 
             outcomeContext                       
               .fmap( publishOutcomeToDataIngressTopic )
-              .fmap( identifyMessageAsPublished )
-              .fmap( commitOutcome );
+              .fmap( identifyMessageAsPublished );
+
+            outcomeContext
+              .ServiceContext
+              .ServiceDataModel
+              .SaveChanges();
+
         }
 
 
@@ -279,20 +333,6 @@ namespace wipm.exchangestats.data.ingress.listener {
             return outcomeContext;
         }
                        
-        private static OutcomeContext commitMessage
-                                       ( OutcomeContext outcomeContext ) {
-
-            if ( outcomeContext == null ) throw new ArgumentNullException( nameof( outcomeContext ) );
-
-
-            outcomeContext
-              .ServiceContext
-              .ServiceDataModel
-              .Commit();
-
-            return outcomeContext;
-        }
-
         private static OutcomeContext publishOutcomeToDataIngressTopic
                                        ( OutcomeContext outcomeContext ) {
 
@@ -326,19 +366,6 @@ namespace wipm.exchangestats.data.ingress.listener {
               ;
 
             return outcomeContext;
-
-        }
-
-        private static void commitOutcome
-                             ( OutcomeContext outcomeContext ) {
-
-            if ( outcomeContext == null ) throw new ArgumentNullException( nameof( outcomeContext ) );
-
-
-            outcomeContext
-                .ServiceContext
-                .ServiceDataModel
-                .Commit();
 
         }
 
