@@ -63,6 +63,7 @@
     <Compile Include="Service\ServiceRequest.cs" />
     <Compile Include="Service\ServiceResponse.cs" />
     <Compile Include="Service\ServiceCommandFactory.cs" />
+    <Compile Include="Service\ServiceResponseJsonConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\wipm.exchangestats.data.ingress.interfaces\wipm.exchangestats.data.ingress.interfaces.csproj">

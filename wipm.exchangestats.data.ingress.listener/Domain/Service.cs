@@ -300,9 +300,8 @@ namespace wipm.exchangestats.data.ingress.listener {
                        serviceContext: context.ServiceContext
                       ,messageOutcome: new MessageOutcome(
                           requestId: context.Message.RequestId
-                          // todo: logic is needed to preserver the information type for the outcome
                          ,outcomeType: $"{serviceCommand.GetType().Name}Result"
-                         ,outcome: JsonConvert.SerializeObject( serviceResponse )  
+                         ,outcome: ServiceResponseJsonConverter.Serialise( serviceResponse )  
                        )
                     );
 
