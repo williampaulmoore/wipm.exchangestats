@@ -13,8 +13,15 @@ namespace wipm.exchangestats.data.ingress.core {
     public class AddExchangeError 
                   : RecursiveStateChangeError {
 
+        public string ExchangeCode { get; private set; }
+
         public AddExchangeError
-                 ( IEnumerable<StateChangeError> errors ) : base( errors ) {}
+                 ( string exchangeCode
+                 , IEnumerable<StateChangeError> errors ) : base( errors ) {
+
+            this.ExchangeCode = exchangeCode;
+
+        }
 
     }
 
@@ -72,8 +79,8 @@ namespace wipm.exchangestats.data.ingress.core {
             );
 
             return errors.Count() == 0
-                 ? Either<StateChangeError,ExchangeModel>.Right( new ExchangeModel { Code =data.Code, Name = data.Name } )
-                 : Either<StateChangeError,ExchangeModel>.Left( new AddExchangeError( errors ) )
+                 ? Either<StateChangeError,ExchangeModel>.Right( new ExchangeModel { Code = data.Code, Name = data.Name } )
+                 : Either<StateChangeError,ExchangeModel>.Left( new AddExchangeError( data.Code,  errors ) )
                  ;
         }
 
