@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using System;
 using System.Configuration;
 using wipm.exchangestats.data.ingress.interfaces;
+using wipm.exchangestats.infrastrcuture;
 using wipm.library.messaging;
 
 namespace wipm.exchangestats.data.ingress.gateway {
@@ -17,7 +18,8 @@ namespace wipm.exchangestats.data.ingress.gateway {
 
 
             var message = new BrokeredMessage( queueEntry.Message );
-                message.MessageId = queueEntry.RequestId.ToString();
+                message.CorrelationId = queueEntry.RequestId.ToString();
+                message.MessageId = queueEntry.MessageId.ToString();
                 message.ContentType = queueEntry.MessageType;
 
             ingressGatewayTopic.Send( message );            
@@ -29,7 +31,7 @@ namespace wipm.exchangestats.data.ingress.gateway {
 
             ingressGatewayTopic = TopicClient.CreateFromConnectionString( 
                  connectionString
-                ,Topics.IngressGatewayTopicName
+                , IngressGatewayTopic.Name 
             );
         }
 

@@ -78,11 +78,16 @@
     <Compile Include="Adapter\AzureServiceBusIngressDataTopic.cs" />
     <Compile Include="Domain\Message.cs" />
     <Compile Include="Domain\MessageContext.cs" />
-    <Compile Include="Domain\MessageOutcome.cs" />
-    <Compile Include="Domain\OutcomeContext.cs" />
+    <Compile Include="Handlers\IngressGatewayTriggerMessageContextFactory.cs" />
+    <Compile Include="Handlers\DataIngressTopic.cs" />
+    <Compile Include="Handlers\IngressGatewayCommandFactory.cs" />
+    <Compile Include="Handlers\IngressGatewayTopicHandler.cs" />
+    <Compile Include="Domain\ServiceContext.cs" />
+    <Compile Include="Domain\TriggerMessageContext.cs" />
+    <Compile Include="Handlers\TopicHandler.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Domain\Service.cs" />
+    <Compile Include="Service.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -103,6 +108,10 @@
     <ProjectReference Include="..\wipm.exchangestats.data.ingress.interfaces\wipm.exchangestats.data.ingress.interfaces.csproj">
       <Project>{90EB0CA0-8C64-42AF-9282-AFB8DA02711D}</Project>
       <Name>wipm.exchangestats.data.ingress.interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\wipm.exchangestats.infrastrcuture\wipm.exchangestats.infrastrcuture.csproj">
+      <Project>{9A6C006B-2297-4DA8-9171-81083EF4AA40}</Project>
+      <Name>wipm.exchangestats.infrastrcuture</Name>
     </ProjectReference>
     <ProjectReference Include="..\wipm.library.messaging\wipm.library.messaging.csproj">
       <Project>{288FD9DD-14D5-4289-867C-F8BB0C1E4097}</Project>

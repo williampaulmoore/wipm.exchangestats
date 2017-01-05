@@ -1,6 +1,6 @@
 ﻿namespace wipm.exchangestats.data.ingress.core {
 
-    public interface CoreDataModel {
+    public interface DataIngressDataModel {
 
         ExchangeModelSet ExchangeModels { get;  }
     }

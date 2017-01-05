@@ -1,4 +1,4 @@
-﻿
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -6,17 +6,18 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using wipm.exchangestats.data.ingress.interfaces;
+using wipm.exchangestats.infrastrcuture;
 using wipm.library.messaging;
 
 namespace wipm.exchangestats.data.ingress.gateway.Controllers {
 
     [Route("v1/exchanges")]
     public class ExchangesController 
-                   : ApiController  {
+                   : ApiController {
 
         [HttpPost]
         public HttpResponseMessage Post
-                                     ( IEnumerable<ExchangeData> exchanges ) {
+                                    ( IEnumerable<ExchangeData> exchanges ) {
             
             if ( exchanges == null ) return new HttpResponseMessage( HttpStatusCode.BadRequest );
             if ( exchanges.Count() == 0 ) return new HttpResponseMessage( HttpStatusCode.BadRequest );
@@ -26,9 +27,11 @@ namespace wipm.exchangestats.data.ingress.gateway.Controllers {
                   = ExchangeDataJsonConverter.SerialiseEnumerable( exchanges );
 
             var queueEntry = new IngressQueueEntry(
-                RequestId: requestIdentityProvider.GetId()
-               ,Message: json
-               ,MessageType: Messages.Exchanges
+                requestId: requestIdentityProvider.GetId()
+                // todo: change this to use a message identity provider
+               ,messageId: Guid.NewGuid()
+               ,message: json
+               ,messageType: IngressGatewayTopic.Messages.Exchanges
             );
 
             Trace.TraceInformation( $"[{queueEntry.RequestId}] - Publishing" );

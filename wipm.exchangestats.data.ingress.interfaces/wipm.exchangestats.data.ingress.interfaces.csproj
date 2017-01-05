@@ -46,9 +46,7 @@
   <ItemGroup>
     <Compile Include="ExcahngeData.cs" />
     <Compile Include="ExchangeDataJsonConverter.cs" />
-    <Compile Include="Messages.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Topics.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

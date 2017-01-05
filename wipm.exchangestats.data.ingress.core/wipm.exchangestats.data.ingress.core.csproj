@@ -49,7 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Data\DataModel.cs" />
+    <Compile Include="Data\DataIngressDataModel.cs" />
     <Compile Include="Data\ExchangeModel.cs" />
     <Compile Include="Data\ExchangeModelSet.cs" />
     <Compile Include="Domain\CreateNewExchange.cs" />

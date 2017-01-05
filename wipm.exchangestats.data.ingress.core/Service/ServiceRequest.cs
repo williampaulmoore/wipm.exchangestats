@@ -7,13 +7,13 @@ namespace wipm.exchangestats.data.ingress.core {
     /// </summary>
     public class ServiceRequest {
 
-        public readonly CoreDataModel DataModel;
+        public readonly DataIngressDataModel DataModel;
 
         public readonly string Message;
 
 
         public ServiceRequest
-                 ( CoreDataModel dataModel
+                 ( DataIngressDataModel dataModel
                  , string message) {
 
 

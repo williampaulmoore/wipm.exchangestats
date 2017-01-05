@@ -12,7 +12,7 @@ namespace wipm.exchangestats.data.ingress.listener {
     /// </summary>
     class DataModelDbContext
             : DbContext
-            , CoreDataModel {
+            , DataIngressDataModel {
 
         public ExchangeModelSet ExchangeModels {
             get {
@@ -20,64 +20,78 @@ namespace wipm.exchangestats.data.ingress.listener {
             }
         }
         private ExchangeModelSet exchagenModels;
-            
 
-        public void WriteMessage( Message message ) {
+        
+        public bool HasMessage( Guid messageId ) {
+            
+            return Messages.Any( m => m.MessageId == messageId );
+        }
+
+        public void WriteMessage
+                     ( Message message 
+                     , Guid OutcomeMessageId ) {
 
             if ( message == null ) throw new ArgumentNullException( nameof( message ) );
 
 
             var model = new MessageModel {
                  RequestId = message.RequestId
+                ,MessageId = message.MessageId
                 ,Messsage = message.Body
                 ,Published = false
+                ,OutcomeMessageId = OutcomeMessageId
             };
 
             Messages.Add( model );
+
+            SaveChanges();
         }
 
-        public void WriteMessageOutcome( MessageOutcome messageOutcome ) {
+
+        public void WriteMessageOutcome( Message message ) {
             
-            var message 
-                 = Messages.Find( messageOutcome.RequestId );
+            var messageModel 
+                  = Messages.Single( m => m.OutcomeMessageId == message.MessageId );
 
-            if ( message == null ) throw new MessageNotFoundException( messageOutcome.RequestId );
+            if ( messageModel == null ) throw new OuctomeMessageNotFoundException( message.MessageId );
 
 
-            message.OutcomeType = messageOutcome.OutcomeType;
-            message.Outcome = messageOutcome.Outcome;
+            messageModel.OutcomeType = message.MessageType;
+            messageModel.Outcome = message.Body;
             
+            SaveChanges();
+
         }
 
-        public void SetMessageToPublished( Guid requestId ) {
+        public void SetOutcomeToPublished( Guid messageId ) {
 
             var message 
-                 = Messages.Find( requestId );
+                  = Messages.Single( m => m.OutcomeMessageId == messageId );
 
-            if ( message == null ) throw new MessageNotFoundException( requestId );
+            if ( message == null ) throw new MessageNotFoundException( messageId );
 
             message.Published = true;
+
+            SaveChanges();
         }
 
-        public bool HasMessage( Guid requestId ) {
-            
-            return Messages.Any( m => m.RequestId == requestId );
-        }
 
-        public IEnumerable<MessageOutcome> GetUnpublishedOutcomes() {
+        public IEnumerable<Message> GetUnpublishedMessages() {
 
             return 
               Messages
                 .Where( m => !m.Published )
                 .ToList()
                 .Select( m => 
-                    new MessageOutcome (
+                    new Message (
                        m.RequestId
+                      ,m.OutcomeMessageId
                       ,m.OutcomeType
                       ,m.Outcome
                     )
                 );
         }
+
 
         public DbSet<ExchangeModel> Exchanges { get; set; }
 
@@ -89,9 +103,19 @@ namespace wipm.exchangestats.data.ingress.listener {
     public class MessageNotFoundException 
                    : Exception {
 
-        public MessageNotFoundException( Guid requestId ) 
-                : base( $"Messages not found for request :{requestId}" ) {}
+        public MessageNotFoundException( Guid messageId ) 
+                : base( $"Messages not found for :{messageId}" ) {}
 
     }
+
+    public class OuctomeMessageNotFoundException
+                   : Exception {
+
+        public OuctomeMessageNotFoundException( Guid messageId ) 
+                : base( $"Outcome messages not found for :{messageId}" ) {}
+
+
+
+    } 
 
 }

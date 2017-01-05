@@ -11,6 +11,8 @@ The domain is financial information from stock markets.  It will accept updates 
 ## Areas
 
 * **Data ingress** - Responsible for loading raw data into the system.
+* **Audit** - Respoonsible providing an audit trail for requests and primary objects.
+
 
 
 ## Architectural

@@ -180,6 +180,10 @@
       <Project>{90EB0CA0-8C64-42AF-9282-AFB8DA02711D}</Project>
       <Name>wipm.exchangestats.data.ingress.interfaces</Name>
     </ProjectReference>
+    <ProjectReference Include="..\wipm.exchangestats.infrastrcuture\wipm.exchangestats.infrastrcuture.csproj">
+      <Project>{9A6C006B-2297-4DA8-9171-81083EF4AA40}</Project>
+      <Name>wipm.exchangestats.infrastrcuture</Name>
+    </ProjectReference>
     <ProjectReference Include="..\wipm.library.messaging\wipm.library.messaging.csproj">
       <Project>{288fd9dd-14d5-4289-867c-f8bb0c1e4097}</Project>
       <Name>wipm.library.messaging</Name>
